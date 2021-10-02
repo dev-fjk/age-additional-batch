@@ -1,6 +1,7 @@
 package com.batch.additional.age.application.config;
 
 import com.batch.additional.age.application.common.BatchConstant;
+import com.batch.additional.age.application.job.listener.AgeJobListener;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.batch.core.Job;
@@ -20,6 +21,7 @@ import org.springframework.context.annotation.Configuration;
 public class JobConfig {
 
     private final JobBuilderFactory jobBuilderFactory;
+    private final AgeJobListener jobListener;
 
     // Steps
     private final Step ageAdditionalStep;
@@ -33,6 +35,7 @@ public class JobConfig {
     public Job ageAdditionalJob() {
         return jobBuilderFactory.get(BatchConstant.AGE_ADDITIONAL_JOB_NAME)
                 .incrementer(new RunIdIncrementer())
+                .listener(jobListener)
                 .start(ageAdditionalStep)
                 .build();
     }
