@@ -56,7 +56,14 @@
             <optional>true</optional>
         </dependency>
 
-        <!-- MyBatis JPAやJDBC使用時は削除してください -->
+        <!-- PostgreSQL -->
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+
+        <!-- MyBatis -->
         <dependency>
             <groupId>org.mybatis.spring.boot</groupId>
             <artifactId>mybatis-spring-boot-starter</artifactId>
@@ -67,14 +74,6 @@
             <groupId>org.mybatis.scripting</groupId>
             <artifactId>mybatis-thymeleaf</artifactId>
             <version>1.0.1</version>
-        </dependency>
-
-        <!-- MySql 別のRDB使用時は削除してください -->
-        <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-            <version>8.0.23</version><!--$NO-MVN-MAN-VER$ -->
-            <scope>runtime</scope>
         </dependency>
 
         <!-- h2 -->

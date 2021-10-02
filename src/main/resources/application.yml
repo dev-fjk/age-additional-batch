@@ -10,6 +10,9 @@ spring:
     jdbc:
       initialize-schema: never
 
+mybatis:
+  mapper-locations: com.batch.additional.age.infrastructure.db.mapper.*.xml
+
 logging:
   level:
     web: debug
