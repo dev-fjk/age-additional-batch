@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.batch.additional.age.infrastructure.db.mapper.UserMapper">
+
+    <select id="findAll" resultType="com.batch.additional.age.infrastructure.db.dto.DbUserInfo">
+        SELECT USER_ID     AS userId,
+               LAST_NAME   AS lastName,
+               FIRST_NAME  AS firstName,
+               AGE         AS age,
+               BIRTH_DAY   AS birthDay,
+               CREATED_AT  AS createdAt,
+               CREATE_USER AS createUser,
+               UPDATE_AT   AS updateAt,
+               UPDATE_USER AS updateUser,
+               DELETE_FLG  AS deleteFlg
+        FROM USER
+        WHERE DELETE_FLG = '0'
+    </select>
+</mapper>

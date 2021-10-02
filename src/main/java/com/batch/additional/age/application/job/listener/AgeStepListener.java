@@ -16,12 +16,12 @@ import org.springframework.stereotype.Component;
 public class AgeStepListener implements StepExecutionListener {
 
     @Override
-    public void beforeStep(StepExecution stepExecution) {
+    public void beforeStep(final StepExecution stepExecution) {
         log.info("ステップ開始 : {} , ステータス : {}", stepExecution.getStepName(), stepExecution.getStatus());
     }
 
     @Override
-    public ExitStatus afterStep(StepExecution stepExecution) {
+    public ExitStatus afterStep(final StepExecution stepExecution) {
         log.info("ステップ終了 : {} , ステータス : {}", stepExecution.getStepName(), stepExecution.getStatus());
         log.info("ExecutionContext : {}", stepExecution.getExecutionContext());
         log.info("Exit Status : {}", stepExecution.getExitStatus());
