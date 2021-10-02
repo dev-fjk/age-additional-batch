@@ -6,6 +6,9 @@ spring:
     encoding: UTF-8
   jackson:
     time-zone: "Asia/Tokyo"
+  batch:
+    jdbc:
+      initialize-schema: never
 
 logging:
   level:
