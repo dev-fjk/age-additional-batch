@@ -1,5 +1,6 @@
 package com.batch.additional.age.application.config;
 
+import com.batch.additional.age.application.job.CleanLogFileTasklet;
 import com.batch.additional.age.application.job.age.DbUserProcessor;
 import com.batch.additional.age.application.job.age.DbUserReader;
 import com.batch.additional.age.application.job.age.DbUserWriter;
@@ -22,9 +23,6 @@ import org.springframework.context.annotation.Configuration;
 @RequiredArgsConstructor
 public class StepConfig {
 
-    private static final String AGE_ADDITIONAL_STEP_NAME = "ageAdditionalStep";
-    private static final int CHUNK_SIZE = 5;
-
     private final StepBuilderFactory stepBuilderFactory;
     private final AgeStepListener stepListener;
 
@@ -33,6 +31,13 @@ public class StepConfig {
     private final DbUserProcessor dbUserProcessor;
     private final DbUserWriter dbUserWriter;
 
+    // ログファイル削除
+    private final CleanLogFileTasklet cleanLogFileTasklet;
+
+    // const
+    private static final int CHUNK_SIZE = 5;
+    private static final String AGE_ADDITIONAL_STEP_NAME = "ageAdditionalStep";
+    private static final String CLEAN_LOG_FILE_STEP_NAME = "cleanLogFileStep";
 
     /**
      * 年齢加算処理を行うStep
@@ -47,6 +52,19 @@ public class StepConfig {
                 .reader(dbUserReader)
                 .processor(dbUserProcessor)
                 .writer(dbUserWriter)
+                .build();
+    }
+
+    /**
+     * ログファイルの削除を行うStep
+     *
+     * @return Step
+     */
+    @Bean(name = CLEAN_LOG_FILE_STEP_NAME)
+    public Step cleanLogFileStep() {
+        return stepBuilderFactory.get(CLEAN_LOG_FILE_STEP_NAME)
+                .listener(stepListener)
+                .tasklet(cleanLogFileTasklet)
                 .build();
     }
 }
