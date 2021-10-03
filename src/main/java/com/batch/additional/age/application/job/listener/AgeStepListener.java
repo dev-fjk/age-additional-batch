@@ -5,6 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.batch.core.ExitStatus;
 import org.springframework.batch.core.StepExecution;
 import org.springframework.batch.core.StepExecutionListener;
+import org.springframework.batch.item.ExecutionContext;
 import org.springframework.stereotype.Component;
 
 /**
@@ -23,6 +24,16 @@ public class AgeStepListener implements StepExecutionListener {
     @Override
     public ExitStatus afterStep(final StepExecution stepExecution) {
         log.info("ステップ終了 : {} , ステータス : {}", stepExecution.getStepName(), stepExecution.getStatus());
+
+        if (stepExecution.getStepName().equals("ageAdditionalStep")) {
+            final int readCount = stepExecution.getReadCount();
+            log.info("年齢更新処理 処理件数 : {}", readCount);
+
+            // Line通知を行うために chunkの処理件数をJob ExecutionContextに保存する
+            final ExecutionContext jobContext = stepExecution.getJobExecution().getExecutionContext();
+            jobContext.put("ageAdditionalCount", readCount);
+        }
+
         log.info("ExecutionContext : {}", stepExecution.getExecutionContext());
         log.info("Exit Status : {}", stepExecution.getExitStatus());
         return stepExecution.getExitStatus();

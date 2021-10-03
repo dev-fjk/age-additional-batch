@@ -47,11 +47,11 @@
         UPDATE
             USER
         SET
-            AGE = #{userInfo.age},
+            AGE = #{age},
             UPDATE_AT = CURRENT_DATE,
             UPDATE_USER = '年齢更新バッチ'
         WHERE
-            USER_ID = #{userInfo.userId}
+            USER_ID = #{userId}
           AND
             DELETE_FLG = '0'
     </update>
