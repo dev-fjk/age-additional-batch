@@ -9,8 +9,8 @@ spring:
     init:
       # h2使用なので毎回DDLとDMLを投入する
       mode: always
-      schema-locations: classpath:h2/USER.sql
-      data-locations: classpath:h2/USER-data.sql
+      schema-locations: classpath:sql/ACCOUNT.sql
+      data-locations: classpath:sql/ACCOUNT-data.sql
   h2:
     console:
       enabled: true

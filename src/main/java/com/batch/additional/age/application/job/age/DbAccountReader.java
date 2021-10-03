@@ -1,7 +1,7 @@
 package com.batch.additional.age.application.job.age;
 
-import com.batch.additional.age.infrastructure.db.dto.DbUserInfo;
-import com.batch.additional.age.infrastructure.db.mapper.UserMapper;
+import com.batch.additional.age.infrastructure.db.dto.DbAccountInfo;
+import com.batch.additional.age.infrastructure.db.mapper.AccountMapper;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
@@ -14,12 +14,12 @@ import org.springframework.batch.core.configuration.annotation.StepScope;
 import org.springframework.stereotype.Component;
 
 /**
- * ユーザー情報取得用ItemReader
+ * アカウント情報取得用ItemReader
  */
 @Slf4j
 @StepScope
 @Component
-public class DbUserReader extends MyBatisCursorItemReader<DbUserInfo> {
+public class DbAccountReader extends MyBatisCursorItemReader<DbAccountInfo> {
 
     /**
      * コンストラクタ
@@ -27,9 +27,9 @@ public class DbUserReader extends MyBatisCursorItemReader<DbUserInfo> {
      *
      * @param sqlSessionFactory : セッションファクトリ
      */
-    public DbUserReader(final SqlSessionFactory sqlSessionFactory) {
+    public DbAccountReader(final SqlSessionFactory sqlSessionFactory) {
         this.setSqlSessionFactory(sqlSessionFactory);
-        this.setQueryId(UserMapper.class.getName() + ".fetchTodayBirthUser");
+        this.setQueryId(AccountMapper.class.getName() + ".fetchTodayBirthAccount");
     }
 
     /**
@@ -51,13 +51,13 @@ public class DbUserReader extends MyBatisCursorItemReader<DbUserInfo> {
     /**
      * DBからデータの読み取りを実施
      *
-     * @return ユーザー情報
+     * @return アカウント情報
      * @throws Exception : 読み込み時例外
      */
     @Override
-    protected DbUserInfo doRead() throws Exception {
-        final DbUserInfo userInfo = super.doRead();
-        log.info("読み込みデータ : {}", userInfo);
-        return userInfo;
+    protected DbAccountInfo doRead() throws Exception {
+        final DbAccountInfo accountInfo = super.doRead();
+        log.info("読み込みデータ : {}", accountInfo);
+        return accountInfo;
     }
 }
