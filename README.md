@@ -8,8 +8,8 @@ Chunk/Taskletそれぞれ1Stepずつ作成する
 - Spring Batch
 - Spock
 - Maven
-- h2(localプロファイル)
-- PostgreSQL(devプロファイル)
+- h2
+- PostgreSQL 13.4
 - My Batis
 ## 機能
 - **Chunk** : 年齢更新機能 
