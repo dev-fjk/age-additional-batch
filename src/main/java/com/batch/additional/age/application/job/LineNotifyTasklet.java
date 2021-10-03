@@ -43,6 +43,7 @@ public class LineNotifyTasklet implements Tasklet {
                 ? (Integer) executionContext.get("ageAdditionalCount") : null;
 
         final StringBuilder notifyMsgBuilder = new StringBuilder();
+        notifyMsgBuilder.append(LineSeparator.UNIX.value());
         notifyMsgBuilder.append("年齢加算バッチの処理が終了しました。");
         notifyMsgBuilder.append(LineSeparator.UNIX.value());
         notifyMsgBuilder.append("処理件数 : ").append(readCount).append(" 件");

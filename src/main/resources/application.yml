@@ -20,7 +20,7 @@ logging:
 extension:
   line:
     url: https://notify-api.line.me/api/notify
-    token: dummy
+    token: pZJ4dsFWITvf1KQXlvU0U8K6GAw6CxaBVwanWtj1mEi
 
 ---
 # -Dspring.profiles.activeを指定しなかった場合のデフォルトプロファイル
