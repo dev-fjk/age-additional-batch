@@ -1,4 +1,4 @@
-package com.batch.additional.age.infrastructure.repositoryimpl;
+package com.batch.additional.age.infrastructure.db;
 
 import com.batch.additional.age.domain.repository.AccountRepository;
 import com.batch.additional.age.infrastructure.db.dto.DbAccountInfo;

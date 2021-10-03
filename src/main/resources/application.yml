@@ -17,6 +17,11 @@ logging:
   level:
     web: debug
 
+extension:
+  line:
+    url: https://notify-api.line.me/api/notify
+    token: pZJ4dsFWITvf1KQXlvU0U8K6GAw6CxaBVwanWtj1mEi
+
 ---
 # -Dspring.profiles.activeを指定しなかった場合のデフォルトプロファイル
 # 年齢加算バッチとしてはh2をデフォルト使用とする(インメモリなのでデータを保持しなくなる)
