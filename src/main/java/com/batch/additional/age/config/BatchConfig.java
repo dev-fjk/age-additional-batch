@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
 /**
- * バッチの
+ * バッチの設定定義クラス
  */
 @Profile("!test")
 @Configuration
@@ -24,7 +24,7 @@ public class BatchConfig extends DefaultBatchConfigurer {
      * @param dataSource : データソース
      */
     @Override
-    public void setDataSource(DataSource dataSource) {
+    public void setDataSource(final DataSource dataSource) {
         // 空処理
     }
 
