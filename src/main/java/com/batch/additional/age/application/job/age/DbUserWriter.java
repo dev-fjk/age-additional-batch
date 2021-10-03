@@ -26,7 +26,7 @@ public class DbUserWriter extends MyBatisBatchItemWriter<DbUserInfo> {
         this.setSqlSessionFactory(sqlSessionFactory);
         this.setStatementId(UserMapper.class.getName() + ".updateUserAge");
 
-        // Readerで読みこんだデータが全て更新できなった際に異常とするか
+        // Readerで読みこんだデータが全て更新できなった際にｓ異常とするか
         this.setAssertUpdates(false);
     }
 

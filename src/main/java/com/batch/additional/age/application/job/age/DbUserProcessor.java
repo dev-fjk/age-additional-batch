@@ -21,10 +21,9 @@ public class DbUserProcessor implements ItemProcessor<DbUserInfo, DbUserInfo> {
      *
      * @param userInfo : ユーザー情報
      * @return : 年齢を更新したユーザー情報
-     * @throws Exception : 加工時例外
      */
     @Override
-    public DbUserInfo process(final DbUserInfo userInfo) throws Exception {
+    public DbUserInfo process(final DbUserInfo userInfo) {
 
         final Integer oldAge = userInfo.getAge();
 

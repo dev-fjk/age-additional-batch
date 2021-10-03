@@ -12,6 +12,9 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+/**
+ * ジョブの実行定義クラス
+ */
 @Slf4j
 @Configuration
 @EnableBatchProcessing
