@@ -1,6 +1,6 @@
 package com.batch.additional.age.application.job.age;
 
-import com.batch.additional.age.infrastructure.db.dto.DbUserInfo;
+import com.batch.additional.age.infrastructure.db.dto.DbAccountInfo;
 import java.time.LocalDate;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.batch.core.configuration.annotation.StepScope;
@@ -13,25 +13,24 @@ import org.springframework.stereotype.Component;
 @Slf4j
 @StepScope
 @Component
-public class DbUserProcessor implements ItemProcessor<DbUserInfo, DbUserInfo> {
-
+public class DbAccountProcessor implements ItemProcessor<DbAccountInfo, DbAccountInfo> {
 
     /**
      * 年齢の加工を行う
      *
-     * @param userInfo : ユーザー情報
-     * @return : 年齢を更新したユーザー情報
+     * @param accountInfo : アカウント情報
+     * @return : 年齢を更新したアカウント情報
      */
     @Override
-    public DbUserInfo process(final DbUserInfo userInfo) {
+    public DbAccountInfo process(final DbAccountInfo accountInfo) {
 
-        final Integer oldAge = userInfo.getAge();
+        final Integer oldAge = accountInfo.getAge();
 
         // バッチ実行時の年と誕生日の年の差分を取得
-        final Integer calculatedAge = LocalDate.now().getYear() - userInfo.getBirthDay().getYear();
-        userInfo.setAge(calculatedAge);
+        final Integer calculatedAge = LocalDate.now().getYear() - accountInfo.getBirthDay().getYear();
+        accountInfo.setAge(calculatedAge);
         log.info("年齢を更新しました。 更新前 : {}, 更新後 : {}", oldAge, calculatedAge);
 
-        return userInfo;
+        return accountInfo;
     }
 }

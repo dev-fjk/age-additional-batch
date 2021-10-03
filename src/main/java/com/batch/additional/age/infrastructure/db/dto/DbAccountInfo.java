@@ -7,15 +7,15 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 /**
- * ユーザーテーブルEntity
+ * アカウントテーブルEntity
  */
 @Getter
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
-public class DbUserInfo {
+public class DbAccountInfo {
 
-    private Integer userId;
+    private Integer accountId;
     private String lastName;
     private String firstName;
     private Integer age;

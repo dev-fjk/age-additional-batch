@@ -1,11 +1,11 @@
 package com.batch.additional.age.application.config;
 
 import com.batch.additional.age.application.job.CleanLogFileTasklet;
-import com.batch.additional.age.application.job.age.DbUserProcessor;
-import com.batch.additional.age.application.job.age.DbUserReader;
-import com.batch.additional.age.application.job.age.DbUserWriter;
+import com.batch.additional.age.application.job.age.DbAccountProcessor;
+import com.batch.additional.age.application.job.age.DbAccountReader;
+import com.batch.additional.age.application.job.age.DbAccountWriter;
 import com.batch.additional.age.application.job.listener.AgeStepListener;
-import com.batch.additional.age.infrastructure.db.dto.DbUserInfo;
+import com.batch.additional.age.infrastructure.db.dto.DbAccountInfo;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.batch.core.Step;
@@ -27,9 +27,9 @@ public class StepConfig {
     private final AgeStepListener stepListener;
 
     // 年齢更新処理
-    private final DbUserReader dbUserReader;
-    private final DbUserProcessor dbUserProcessor;
-    private final DbUserWriter dbUserWriter;
+    private final DbAccountReader dbAccountReader;
+    private final DbAccountProcessor dbAccountProcessor;
+    private final DbAccountWriter dbAccountWriter;
 
     // ログファイル削除
     private final CleanLogFileTasklet cleanLogFileTasklet;
@@ -48,10 +48,10 @@ public class StepConfig {
     public Step ageAdditionalStep() {
         return stepBuilderFactory.get(AGE_ADDITIONAL_STEP_NAME)
                 .listener(stepListener)
-                .<DbUserInfo, DbUserInfo>chunk(CHUNK_SIZE)
-                .reader(dbUserReader)
-                .processor(dbUserProcessor)
-                .writer(dbUserWriter)
+                .<DbAccountInfo, DbAccountInfo>chunk(CHUNK_SIZE)
+                .reader(dbAccountReader)
+                .processor(dbAccountProcessor)
+                .writer(dbAccountWriter)
                 .build();
     }
 

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.batch.additional.age.infrastructure.db.mapper.UserMapper">
+<mapper namespace="com.batch.additional.age.infrastructure.db.mapper.AccountMapper">
 
     <!-- 全データ取得 -->
-    <select id="findAll" resultType="com.batch.additional.age.infrastructure.db.dto.DbUserInfo">
+    <select id="findAll" resultType="com.batch.additional.age.infrastructure.db.dto.DbAccountInfo">
         SELECT
-            USER_ID     AS userId,
+            ACCOUNT_ID  AS accountId,
             LAST_NAME   AS lastName,
             FIRST_NAME  AS firstName,
             AGE         AS age,
@@ -16,15 +16,15 @@
             UPDATE_USER AS updateUser,
             DELETE_FLG  AS deleteFlg
         FROM
-            USER
+            ACCOUNT
         WHERE
             DELETE_FLG = '0'
     </select>
 
     <!-- 今日が誕生日のユーザ一覧を取得 -->
-    <select id="fetchTodayBirthUser" resultType="com.batch.additional.age.infrastructure.db.dto.DbUserInfo">
+    <select id="fetchTodayBirthAccount" resultType="com.batch.additional.age.infrastructure.db.dto.DbAccountInfo">
         SELECT
-            USER_ID     AS userId,
+            ACCOUNT_ID  AS accountId,
             LAST_NAME   AS lastName,
             FIRST_NAME  AS firstName,
             AGE         AS age,
@@ -35,7 +35,7 @@
             UPDATE_USER AS updateUser,
             DELETE_FLG  AS deleteFlg
         FROM
-            USER
+            ACCOUNT
         WHERE
             #{today} = TO_CHAR(BIRTH_DAY,'MMDD')
           AND
@@ -43,15 +43,15 @@
     </select>
 
     <!-- 年齢を更新 -->
-    <update id="updateUserAge" timeout="3">
+    <update id="updateAccountAge" timeout="3">
         UPDATE
-            USER
+            ACCOUNT
         SET
             AGE = #{age},
             UPDATE_AT = CURRENT_DATE,
             UPDATE_USER = '年齢更新バッチ'
         WHERE
-            USER_ID = #{userId}
+            ACCOUNT_ID = #{accountId}
           AND
             DELETE_FLG = '0'
     </update>
