@@ -19,3 +19,5 @@ Chunk/Taskletそれぞれ1Stepずつ作成する
 - **Tasklet** : Line通知機能
   - [JavaでLINEにメッセージを送信(通知)する手順【LINE APIで連携】](http://kakedashi-xx.com:25214/index.php/2021/07/01/post-2780/)
   - 処理件数をLineBotでLINEに通知する
+- **Tasklet** : ログファイル削除機能
+  - ローカルのログディレクトリからログファイルを削除する(デフォルトは前日分までのファイルを保持)
