@@ -1,0 +1,15 @@
+---
+# -Dspring.profiles.active=devの時の設定 postgreSQLを使用する
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: postgres
+    # ローカルのPostgreSQLのパスワード git hubのアカウント名と同じ
+    password: ${postgrePassword}
+  sql:
+    init:
+      # DBのテーブル初期化したい場合などは Alwaysに設定すること
+      mode: never
+      schema-locations: classpath:sql/ACCOUNT.sql
+      data-locations: classpath:sql/ACCOUNT-data-postgre.sql
