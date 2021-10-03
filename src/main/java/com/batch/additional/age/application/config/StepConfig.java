@@ -1,6 +1,5 @@
 package com.batch.additional.age.application.config;
 
-import com.batch.additional.age.application.common.BatchConstant;
 import com.batch.additional.age.application.job.SampleTasklet;
 import com.batch.additional.age.application.job.listener.AgeStepListener;
 import lombok.RequiredArgsConstructor;
@@ -20,6 +19,8 @@ import org.springframework.context.annotation.Configuration;
 @RequiredArgsConstructor
 public class StepConfig {
 
+    private static final String AGE_ADDITIONAL_STEP_NAME = "ageAdditionalStep";
+
     private final StepBuilderFactory stepBuilderFactory;
     private final AgeStepListener stepListener;
 
@@ -30,9 +31,9 @@ public class StepConfig {
      *
      * @return Step
      */
-    @Bean(name = BatchConstant.AGE_ADDITIONAL_STEP_NAME)
+    @Bean(name = AGE_ADDITIONAL_STEP_NAME)
     public Step ageAdditionalStep() {
-        return stepBuilderFactory.get(BatchConstant.AGE_ADDITIONAL_STEP_NAME)
+        return stepBuilderFactory.get(AGE_ADDITIONAL_STEP_NAME)
                 .listener(stepListener)
                 .tasklet(sampleTasklet)
                 .build();

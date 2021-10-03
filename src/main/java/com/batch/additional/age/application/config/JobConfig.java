@@ -1,6 +1,5 @@
 package com.batch.additional.age.application.config;
 
-import com.batch.additional.age.application.common.BatchConstant;
 import com.batch.additional.age.application.job.listener.AgeJobListener;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -20,20 +19,23 @@ import org.springframework.context.annotation.Configuration;
 @ConditionalOnProperty(value = {"spring.batch.job.names"})
 public class JobConfig {
 
+    private static final String AGE_ADDITIONAL_JOB_NAME = "ageAdditionalJob";
+
     private final JobBuilderFactory jobBuilderFactory;
     private final AgeJobListener jobListener;
 
     // Steps
     private final Step ageAdditionalStep;
 
+
     /**
      * DBのユーザーの年齢加算処理とLine通知を行うJob
      *
      * @return Job
      */
-    @Bean(name = BatchConstant.AGE_ADDITIONAL_JOB_NAME)
+    @Bean(name = AGE_ADDITIONAL_JOB_NAME)
     public Job ageAdditionalJob() {
-        return jobBuilderFactory.get(BatchConstant.AGE_ADDITIONAL_JOB_NAME)
+        return jobBuilderFactory.get(AGE_ADDITIONAL_JOB_NAME)
                 .incrementer(new RunIdIncrementer())
                 .listener(jobListener)
                 .start(ageAdditionalStep)
