@@ -17,7 +17,7 @@ public class LineNotifyRepository implements NotifyRepository {
 
     @Override
     public void notify(String msg) throws Exception {
-        // TODO Lineに通知を送る処理の盛り込み
+        // TODO Lineに通知を送る処理の盛り込み　通知テスト
         log.info("トークン : {}", lineConfig.getToken());
         log.info("URL : {}", lineConfig.getUrl());
     }
