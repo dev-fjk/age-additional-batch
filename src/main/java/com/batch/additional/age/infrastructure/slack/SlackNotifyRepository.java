@@ -1,7 +1,10 @@
 package com.batch.additional.age.infrastructure.slack;
 
 import com.batch.additional.age.domain.repository.NotifyRepository;
+import com.batch.additional.age.infrastructure.slack.model.SlackAttachment;
 import com.batch.additional.age.infrastructure.slack.model.SlackNotifyRequest;
+import java.util.ArrayList;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.MediaType;
@@ -30,8 +33,13 @@ public class SlackNotifyRepository implements NotifyRepository {
     public void notify(final String msg) throws Exception {
         log.info("Slack に通知を送信します。 送信メッセージ : {}", msg);
 
+        final List<SlackAttachment> attachments = new ArrayList<>();
+        attachments.add(new SlackAttachment(
+                "2eb886", "年齢加算バッチ(AGE-ADDITIONAL-BATCH)", msg
+        ));
+
         final SlackNotifyRequest request = new SlackNotifyRequest();
-        request.setText(msg);
+        request.setAttachments(attachments);
 
         // SLackに通知を送信
         final String slackResponse = slackWebClient.post()

@@ -20,7 +20,7 @@ logging:
 extension:
   slack:
     webhook:
-      uri: https://hooks.slack.com/services/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
+      uri: https://hooks.slack.com/services/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
       connectionTimeout: 3000
       readTimeout: 3000
   line:

@@ -41,7 +41,7 @@ public class SlackConfig {
         final HttpClient httpClient = HttpClient.create()
                 .option(ChannelOption.CONNECT_TIMEOUT_MILLIS, this.connectionTimeout)
                 .doOnConnected(connection -> connection.addHandlerLast(
-                        new ReadTimeoutHandler((int) this.readTimeout)
+                        new ReadTimeoutHandler(this.readTimeout)
                 ));
 
         return WebClient.builder()
