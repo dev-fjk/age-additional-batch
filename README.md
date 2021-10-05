@@ -16,11 +16,11 @@ Chunk/Taskletそれぞれ1Stepずつ作成する
   - **Reader** : DB(h2/Postgre) から 誕生日がバッチ実行日のユーザー一覧を取得しjavaオブジェクトへ変換
   - **Processor** : 現在日時からユーザーの誕生日を減算し 結果を年齢としてjavaオブジェクトに保存
   - **writer** : Processorで加工したデータをDBに書き込み
-- **Tasklet** : Slack通知機能
-  - [slackのIncoming webhookが新しくなっていたのでまとめてみた](https://qiita.com/kshibata101/items/0e13c420080a993c5d16)
-  - 処理件数をSlackに通知する
 - **Tasklet** : Line通知機能
   - [JavaでLINEにメッセージを送信(通知)する手順【LINE APIで連携】](http://kakedashi-xx.com:25214/index.php/2021/07/01/post-2780/)
   - 処理件数をLineBotでLINEに通知する
+- **Tasklet** : Slack通知機能
+  - [slackのIncoming webhookが新しくなっていたのでまとめてみた](https://qiita.com/kshibata101/items/0e13c420080a993c5d16)
+  - 処理件数をSlackに通知する
 - **Tasklet** : ログファイル削除機能
   - ローカルのログディレクトリからログファイルを削除する(デフォルトは前日分までのファイルを保持)
