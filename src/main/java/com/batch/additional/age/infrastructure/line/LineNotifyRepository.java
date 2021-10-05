@@ -33,6 +33,7 @@ public class LineNotifyRepository implements NotifyRepository {
      */
     @Override
     public void notify(final String msg) throws Exception {
+        log.info("ラインに通知を送信します。 メッセージ : {}", msg);
 
         HttpURLConnection connection = null;
 
@@ -55,6 +56,8 @@ public class LineNotifyRepository implements NotifyRepository {
             final InputStream is = connection.getInputStream();
             final BufferedReader r = new BufferedReader(new InputStreamReader(is));
             final String res = r.lines().collect(Collectors.joining());
+
+            log.info("ラインに通知を送信しました。");
             log.info("response : {}", res);
 
         } finally {

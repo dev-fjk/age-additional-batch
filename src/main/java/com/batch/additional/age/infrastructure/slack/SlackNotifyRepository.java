@@ -40,6 +40,7 @@ public class SlackNotifyRepository implements NotifyRepository {
                 .retrieve()
                 .bodyToMono(String.class)
                 .block();
+
         log.info("Slackに通知を送信しました。 : {}", slackResponse);
     }
 }
