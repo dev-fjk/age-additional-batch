@@ -7,6 +7,7 @@ import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Objects;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.ArrayUtils;
 import org.springframework.batch.core.StepContribution;
@@ -22,12 +23,13 @@ import org.springframework.stereotype.Component;
 @Slf4j
 @StepScope
 @Component
+@RequiredArgsConstructor
 public class CleanLogFileTasklet implements Tasklet {
+
+    private final File logFilePath;
 
     // ログファイル保持日数
     private static final int KEEPS_DAY_LOG_FILE = 1;
-    private static final String LOG_FILE_DIR = "log/";
-
 
     /**
      * 古いログファイルの削除を行う
@@ -41,7 +43,7 @@ public class CleanLogFileTasklet implements Tasklet {
     public RepeatStatus execute(final StepContribution contribution, final ChunkContext chunkContext) {
         log.info("cleanLogFile Tasklet Execute START");
 
-        File[] logFiles = new File(LOG_FILE_DIR).listFiles();
+        File[] logFiles = logFilePath.listFiles();
         log.info("ログファイル一覧 : {}", ArrayUtils.toString(logFiles));
 
         if (ArrayUtils.isEmpty(logFiles)) {
