@@ -32,7 +32,7 @@ public class LineNotifyRepository implements NotifyRepository {
      * @throws Exception : メッセージ送信時例外
      */
     @Override
-    public void notify(String msg) throws Exception {
+    public void notify(final String msg) throws Exception {
 
         HttpURLConnection connection = null;
 
@@ -43,6 +43,10 @@ public class LineNotifyRepository implements NotifyRepository {
             connection.setDoOutput(true);
             connection.setRequestMethod("POST");
             connection.addRequestProperty("Authorization", "Bearer " + lineConfig.getToken());
+
+            // タイムアウト設定
+            connection.setConnectTimeout(lineConfig.getConnectionTimeout());
+            connection.setReadTimeout(lineConfig.getReadTimeout());
 
             final OutputStream os = connection.getOutputStream();
             final PrintWriter writer = new PrintWriter(os);

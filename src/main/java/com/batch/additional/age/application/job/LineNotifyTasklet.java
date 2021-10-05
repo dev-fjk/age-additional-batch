@@ -49,6 +49,11 @@ public class LineNotifyTasklet implements Tasklet {
         notifyMsgBuilder.append("処理件数 : ").append(readCount).append(" 件");
         log.info("ライン通知メッセージ : {}", notifyMsgBuilder);
 
+        final String notifyMsg = notifyMsgBuilder.toString();
+
+        // slackにも同じメッセージを送信するのでjobExecutionContextに保存
+        executionContext.put("notifyMsg", notifyMsg);
+
         // Lineへメッセージを送信する
         lineMsgService.sendMessage(notifyMsgBuilder.toString());
 
