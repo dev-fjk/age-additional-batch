@@ -32,7 +32,8 @@ public class LineNotifyRepository implements NotifyRepository {
      * @throws Exception : メッセージ送信時例外
      */
     @Override
-    public void notify(String msg) throws Exception {
+    public void notify(final String msg) throws Exception {
+        log.info("ラインに通知を送信します。 メッセージ : {}", msg);
 
         HttpURLConnection connection = null;
 
@@ -44,6 +45,10 @@ public class LineNotifyRepository implements NotifyRepository {
             connection.setRequestMethod("POST");
             connection.addRequestProperty("Authorization", "Bearer " + lineConfig.getToken());
 
+            // タイムアウト設定
+            connection.setConnectTimeout(lineConfig.getConnectionTimeout());
+            connection.setReadTimeout(lineConfig.getReadTimeout());
+
             final OutputStream os = connection.getOutputStream();
             final PrintWriter writer = new PrintWriter(os);
             writer.append("message=").append(URLEncoder.encode(msg, StandardCharsets.UTF_8)).flush();
@@ -51,6 +56,8 @@ public class LineNotifyRepository implements NotifyRepository {
             final InputStream is = connection.getInputStream();
             final BufferedReader r = new BufferedReader(new InputStreamReader(is));
             final String res = r.lines().collect(Collectors.joining());
+
+            log.info("ラインに通知を送信しました。");
             log.info("response : {}", res);
 
         } finally {

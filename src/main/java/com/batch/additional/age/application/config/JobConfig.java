@@ -28,6 +28,7 @@ public class JobConfig {
     // Steps
     private final Step ageAdditionalStep;
     private final Step lineNotifyStep;
+    private final Step slackNotifyStep;
     private final Step cleanLogFileStep;
 
     // consts
@@ -46,6 +47,7 @@ public class JobConfig {
                 .listener(jobListener)
                 .start(ageAdditionalStep)
                 .next(lineNotifyStep)
+                .next(slackNotifyStep)
                 .build();
     }
 

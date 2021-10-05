@@ -18,9 +18,16 @@ logging:
     web: debug
 
 extension:
+  slack:
+    webhook:
+      uri: https://hooks.slack.com/services/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
+      connectionTimeout: 3000
+      readTimeout: 3000
   line:
     url: https://notify-api.line.me/api/notify
     token: ${lineToken}
+    connectionTimeout: 3000
+    readTimeout: 3000
 
 ---
 # -Dspring.profiles.activeを指定しなかった場合のデフォルトプロファイル

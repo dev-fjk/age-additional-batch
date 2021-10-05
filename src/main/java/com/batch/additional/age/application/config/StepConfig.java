@@ -2,6 +2,7 @@ package com.batch.additional.age.application.config;
 
 import com.batch.additional.age.application.job.CleanLogFileTasklet;
 import com.batch.additional.age.application.job.LineNotifyTasklet;
+import com.batch.additional.age.application.job.SlackNotifyTasklet;
 import com.batch.additional.age.application.job.age.DbAccountProcessor;
 import com.batch.additional.age.application.job.age.DbAccountReader;
 import com.batch.additional.age.application.job.age.DbAccountWriter;
@@ -35,12 +36,16 @@ public class StepConfig {
     // line通知
     private final LineNotifyTasklet lineNotifyTasklet;
 
+    // Slack通知
+    private final SlackNotifyTasklet slackNotifyTasklet;
+
     // ログファイル削除
     private final CleanLogFileTasklet cleanLogFileTasklet;
 
     // const
     private static final int CHUNK_SIZE = 5;
     private static final String AGE_ADDITIONAL_STEP_NAME = "ageAdditionalStep";
+    private static final String SLACK_NOTIFY_STEP_NAME = "slackNotifyStep";
     private static final String LINE_NOTIFY_STEP_NAME = "lineNotifyStep";
     private static final String CLEAN_LOG_FILE_STEP_NAME = "cleanLogFileStep";
 
@@ -70,6 +75,19 @@ public class StepConfig {
         return stepBuilderFactory.get(LINE_NOTIFY_STEP_NAME)
                 .listener(stepListener)
                 .tasklet(lineNotifyTasklet)
+                .build();
+    }
+
+    /**
+     * 年齢加算結果のSlack通知を行うStep
+     *
+     * @return Step
+     */
+    @Bean(name = SLACK_NOTIFY_STEP_NAME)
+    public Step slackNotifyStep() {
+        return stepBuilderFactory.get(SLACK_NOTIFY_STEP_NAME)
+                .listener(stepListener)
+                .tasklet(slackNotifyTasklet)
                 .build();
     }
 

@@ -1,13 +1,9 @@
 package com.batch.additional.age.infrastructure.line;
 
-import java.net.HttpURLConnection;
-import java.net.URL;
 import lombok.Getter;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.context.properties.ConstructorBinding;
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
 /**
@@ -26,4 +22,10 @@ public class LineConfig {
     // LineNotify Token
     @Value("${extension.line.token}")
     private String token;
+
+    @Value("${extension.line.connectionTimeout}")
+    private int connectionTimeout;
+
+    @Value("${extension.line.readTimeout}")
+    private int readTimeout;
 }

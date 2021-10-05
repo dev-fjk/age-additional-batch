@@ -20,10 +20,10 @@ public class LineMsgService implements MsgService {
     /**
      * Lineへメッセージを送信する
      *
-     * @param msg : 送信メッセージ
+     * @param msg : 送信メッセージs
      */
     @Override
-    public void sendMessage(String msg) {
+    public void sendMessage(final String msg) {
 
         try {
             // lineにメッセージを送信する
