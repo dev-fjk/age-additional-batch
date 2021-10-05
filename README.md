@@ -1,6 +1,5 @@
 # age-additional-batch
 Spring Batchの備忘録 年齢更新バッチ  
-Chunk/Taskletそれぞれ1Stepずつ作成する
 ## 環境
 - java 11
 - groovy 3.0
