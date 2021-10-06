@@ -27,10 +27,9 @@ public class SlackNotifyRepository implements NotifyRepository {
      * Slackに通知を送信する
      *
      * @param msg : 送信メッセージ
-     * @throws Exception : Slack通信時例外
      */
     @Override
-    public void notify(final String msg) throws Exception {
+    public void notify(final String msg) {
         log.info("Slack に通知を送信します。 送信メッセージ : {}", msg);
 
         final List<SlackAttachment> attachments = new ArrayList<>();

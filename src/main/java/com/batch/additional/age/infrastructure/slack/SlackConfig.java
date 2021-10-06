@@ -36,7 +36,7 @@ public class SlackConfig {
      * @return : WebClient
      */
     @Bean(name = "slackWebClient")
-    public WebClient slackRestTemplate() {
+    public WebClient slackWebClient() {
 
         final HttpClient httpClient = HttpClient.create()
                 .option(ChannelOption.CONNECT_TIMEOUT_MILLIS, this.connectionTimeout)

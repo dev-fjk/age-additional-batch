@@ -26,7 +26,7 @@ public class DbAccountWriter extends MyBatisBatchItemWriter<DbAccountInfo> {
         this.setSqlSessionFactory(sqlSessionFactory);
         this.setStatementId(AccountMapper.class.getName() + ".updateAccountAge");
 
-        // Readerで読みこんだデータが全て更新できなった際にｓ異常とするか
+        // Readerで読みこんだデータが全て更新できなった際に異常とするか
         this.setAssertUpdates(false);
     }
 

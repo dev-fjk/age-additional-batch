@@ -26,7 +26,6 @@ public class LineMsgService implements MsgService {
     public void sendMessage(final String msg) {
 
         try {
-            // lineにメッセージを送信する
             lineNotifyRepository.notify(msg);
         } catch (final Exception exception) {
             throw new LineSendMsgFailureException("ラインの通知処理を行う際に異常が発生しました。", exception);
