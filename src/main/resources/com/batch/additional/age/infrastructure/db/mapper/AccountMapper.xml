@@ -2,19 +2,33 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.batch.additional.age.infrastructure.db.mapper.AccountMapper">
 
+    <!-- resultMap AS句カットのために設定    -->
+    <resultMap id="dbAccountInfoResult" type="com.batch.additional.age.infrastructure.db.dto.DbAccountInfo">
+        <result property="accountId" column="ACCOUNT_ID" jdbcType="INTEGER"/>
+        <result property="lastName" column="LAST_NAME" jdbcType="VARCHAR"/>
+        <result property="firstName" column="FIRST_NAME" jdbcType="VARCHAR"/>
+        <result property="age" column="AGE" jdbcType="INTEGER"/>
+        <result property="birthDay" column="BIRTH_DAY" jdbcType="DATE"/>
+        <result property="createdAt" column="CREATED_AT" jdbcType="DATE"/>
+        <result property="createUser" column="CREATE_USER" jdbcType="VARCHAR"/>
+        <result property="updateAt" column="UPDATE_AT" jdbcType="DATE"/>
+        <result property="updateUser" column="UPDATE_USER" jdbcType="VARCHAR"/>
+        <result property="deleteFlg" column="DELETE_FLG" jdbcType="CHAR"/>
+    </resultMap>
+
     <!-- 全データ取得 -->
-    <select id="findAll" resultType="com.batch.additional.age.infrastructure.db.dto.DbAccountInfo">
+    <select id="findAll" resultMap="dbAccountInfoResult">
         SELECT
-            ACCOUNT_ID  AS accountId,
-            LAST_NAME   AS lastName,
-            FIRST_NAME  AS firstName,
-            AGE         AS age,
-            BIRTH_DAY   AS birthDay,
-            CREATED_AT  AS createdAt,
-            CREATE_USER AS createUser,
-            UPDATE_AT   AS updateAt,
-            UPDATE_USER AS updateUser,
-            DELETE_FLG  AS deleteFlg
+            ACCOUNT_ID,
+            LAST_NAME,
+            FIRST_NAME,
+            AGE,
+            BIRTH_DAY,
+            CREATED_AT,
+            CREATE_USER ,
+            UPDATE_AT,
+            UPDATE_USER,
+            DELETE_FLG
         FROM
             ACCOUNT
         WHERE
@@ -22,18 +36,18 @@
     </select>
 
     <!-- 今日が誕生日のユーザ一覧を取得 -->
-    <select id="fetchTodayBirthAccount" resultType="com.batch.additional.age.infrastructure.db.dto.DbAccountInfo">
+    <select id="fetchTodayBirthAccount" resultMap="dbAccountInfoResult">
         SELECT
-            ACCOUNT_ID  AS accountId,
-            LAST_NAME   AS lastName,
-            FIRST_NAME  AS firstName,
-            AGE         AS age,
-            BIRTH_DAY   AS birthDay,
-            CREATED_AT  AS createdAt,
-            CREATE_USER AS createUser,
-            UPDATE_AT   AS updateAt,
-            UPDATE_USER AS updateUser,
-            DELETE_FLG  AS deleteFlg
+            ACCOUNT_ID,
+            LAST_NAME,
+            FIRST_NAME,
+            AGE,
+            BIRTH_DAY,
+            CREATED_AT,
+            CREATE_USER ,
+            UPDATE_AT,
+            UPDATE_USER,
+            DELETE_FLG
         FROM
             ACCOUNT
         WHERE
@@ -55,5 +69,4 @@
           AND
             DELETE_FLG = '0'
     </update>
-
 </mapper>

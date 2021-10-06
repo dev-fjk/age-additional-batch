@@ -11,16 +11,30 @@ spring:
       initialize-schema: never
 
 mybatis:
+  # mapper.xmlの配置先ディレクトリ
   mapper-locations: com.batch.additional.age.infrastructure.db.mapper.*.xml
+  configuration:
+    # スネークケースからキャメルケースへの変換設定
+    map-underscore-to-camel-case: true
+    # AS句で設定された列名をマップする設定
+    use-column-label: true
+    # フェッチサイズ
+    default-fetch-size: 1000
+    # DBからの応答タイムアウト値　秒
+    default-statement-timeout: 20
+    # 取得した列が全てNullだった場合空のインスタンスを返却する(NPE防止)
+    return-instance-for-empty-row: true
 
 logging:
   level:
+    myBatis: debug
     web: debug
 
 extension:
   slack:
     webhook:
-      uri: https://hooks.slack.com/services/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
+      # TODO slackチャンネルに追加した webhookが定期的に消えている・・？
+      uri: https://hooks.slack.com/services/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
       connectionTimeout: 3000
       readTimeout: 3000
   line:
