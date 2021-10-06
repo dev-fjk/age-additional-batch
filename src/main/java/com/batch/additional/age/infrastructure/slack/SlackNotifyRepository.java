@@ -20,7 +20,6 @@ import reactor.core.publisher.Mono;
 @RequiredArgsConstructor
 public class SlackNotifyRepository implements NotifyRepository {
 
-    private final SlackConfig slackConfig;
     private final WebClient slackWebClient;
 
     /**
