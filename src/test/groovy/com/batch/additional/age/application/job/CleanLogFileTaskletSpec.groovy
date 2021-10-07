@@ -19,7 +19,7 @@ class CleanLogFileTaskletSpec extends UnitTestBase {
     File logFilePath
 
     @Shared
-    String mockLogFileDir = "src/test/resources/mock/log"
+    String mockLogFileDir = "src/test/resources/mock"
 
     StepContribution stepContribution
     ChunkContext chunkContext
